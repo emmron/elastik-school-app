@@ -37,6 +37,7 @@ const Login = () => {
       />
       <button type="submit">Login</button>
       {error && <p className="error">{error}</p>}
+      <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
     </form>
   );
 };

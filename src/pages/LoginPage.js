@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 
 const LoginPage = () => {
@@ -12,10 +12,17 @@ const LoginPage = () => {
     e.preventDefault();
     setError('');
     try {
-      await Auth.signIn(email, password);
-      navigate('/dashboard');
+      await Auth.signUp({
+        username: email,
+        password,
+        attributes: {
+          email,
+        },
+      });
+      navigate('/confirm-signup', { state: { email } });
     } catch (error) {
-      setError('Failed to sign in: ' + error.message);
+      console.error('Error during sign up:', error);
+      setError('Failed to sign up: ' + (error.message || JSON.stringify(error)));
     }
   };
 
@@ -40,6 +47,7 @@ const LoginPage = () => {
         <button type="submit">Login</button>
       </form>
       {error && <p className="error">{error}</p>}
+      <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
     </div>
   );
 };
