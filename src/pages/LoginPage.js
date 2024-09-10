@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Auth } from 'aws-amplify';
+import { Auth, Amplify } from 'aws-amplify';
+import awsExports from '../aws-exports';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -8,15 +9,24 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    try {
+      Amplify.configure(awsExports);
+    } catch (error) {
+      console.error('Error configuring Amplify:', error);
+      setError('Failed to configure Amplify. Please check your setup.');
+    }
+  }, []);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setError('');
     try {
       await Auth.signIn(email, password);
       navigate('/dashboard');
-    } catch (error) {
-      console.error('Error during login:', error);
-      setError('Failed to login: ' + (error.message || JSON.stringify(error)));
+    } catch (loginError) {
+      console.error('Login error:', loginError);
+      setError(`Login failed: ${loginError.message || JSON.stringify(loginError)}`);
     }
   };
 
@@ -28,20 +38,21 @@ const LoginPage = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
+          placeholder="Enter your email"
           required
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
+          placeholder="Enter your password"
           required
         />
         <button type="submit">Login</button>
       </form>
       {error && <p className="error">{error}</p>}
-      <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+      <p>Don't have an account? <Link to="/signup">Create one here</Link>.</p>
+      <p>Forgot your password? <Link to="/forgot-password">Reset it here</Link></p>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -38,6 +38,7 @@ const Login = () => {
       <button type="submit">Login</button>
       {error && <p className="error">{error}</p>}
       <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+      <p>Forgot your password? <Link to="/forgot-password">Reset it here</Link></p>
     </form>
   );
 };

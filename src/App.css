@@ -28,6 +28,74 @@
   color: #61dafb;
 }
 
+.login-page,
+.signup-page,
+.forgot-password-page {
+  background-color: #ffffff;
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 450px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"],
+.signup-form input[type="email"],
+.signup-form input[type="password"],
+.forgot-password-form input[type="email"] {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 1px solid #a6a6a6;
+  border-radius: 12px;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus,
+.signup-form input[type="email"]:focus,
+.signup-form input[type="password"]:focus,
+.forgot-password-form input[type="email"]:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 8px rgba(0, 86, 179, 0.2);
+}
+
+.login-form button,
+.signup-form button,
+.forgot-password-form button {
+  background-color: #0084ff;
+  color: white;
+  padding: 18px 25px;
+  margin: 20px 0;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.login-form button:hover,
+.signup-form button:hover,
+.forgot-password-form button:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  color: #d8000c;
+  background-color: #ffbaba;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
