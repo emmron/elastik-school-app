@@ -1,15 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
-import DashboardPage from './pages/DashboardPage';
+import DashboardPage from './pages/Dashboardpage';
 
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={LoginPage} />
-        <Route path="/dashboard" component={DashboardPage} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+      </Routes>
     </Router>
   );
 };

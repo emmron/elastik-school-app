@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
       await Auth.signIn(email, password);
-      history.push('/dashboard');
+      navigate('/dashboard');
     } catch (error) {
       setError('Failed to sign in: ' + error.message);
     }

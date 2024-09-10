@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 import StudentForm from '../components/StudentForm';
 import StudentList from '../components/StudentList';
 
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     checkAuthState();
@@ -17,14 +17,14 @@ const DashboardPage = () => {
       const userData = await Auth.currentAuthenticatedUser();
       setUser(userData);
     } catch (error) {
-      history.push('/');
+      navigate('/');
     }
   };
 
   const handleSignOut = async () => {
     try {
       await Auth.signOut();
-      history.push('/');
+      navigate('/');
     } catch (error) {
       console.error('Error signing out: ', error);
     }
