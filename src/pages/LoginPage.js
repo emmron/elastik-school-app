@@ -12,17 +12,11 @@ const LoginPage = () => {
     e.preventDefault();
     setError('');
     try {
-      await Auth.signUp({
-        username: email,
-        password,
-        attributes: {
-          email,
-        },
-      });
-      navigate('/confirm-signup', { state: { email } });
+      await Auth.signIn(email, password);
+      navigate('/dashboard');
     } catch (error) {
-      console.error('Error during sign up:', error);
-      setError('Failed to sign up: ' + (error.message || JSON.stringify(error)));
+      console.error('Error during login:', error);
+      setError('Failed to login: ' + (error.message || JSON.stringify(error)));
     }
   };
 

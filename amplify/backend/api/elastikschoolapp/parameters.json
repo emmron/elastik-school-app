@@ -1,5 +1,5 @@
 {
-  "AppSyncApiName": "schoolproject",
+  "AppSyncApiName": "elastikschoolapp",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false
 }

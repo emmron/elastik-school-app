@@ -1,15 +1,23 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-schoolproject-dev-e362b-authRole",
-      "UnauthRoleArn": "arn:aws:iam::180294221012:role/amplify-schoolproject-dev-e362b-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::180294221012:role/amplify-schoolproject-dev-e362b-authRole",
+      "AuthRoleName": "amplify-elastikschoolapp-dev-9062a-authRole",
+      "UnauthRoleArn": "arn:aws:iam::180294221012:role/amplify-elastikschoolapp-dev-9062a-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::180294221012:role/amplify-elastikschoolapp-dev-9062a-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-schoolproject-dev-e362b-deployment",
-      "UnauthRoleName": "amplify-schoolproject-dev-e362b-unauthRole",
-      "StackName": "amplify-schoolproject-dev-e362b",
-      "StackId": "arn:aws:cloudformation:us-east-1:180294221012:stack/amplify-schoolproject-dev-e362b/82123be0-6f4e-11ef-ae71-125a8f9f93ff",
-      "AmplifyAppId": "d24w59iv9a25ha"
+      "DeploymentBucketName": "amplify-elastikschoolapp-dev-9062a-deployment",
+      "UnauthRoleName": "amplify-elastikschoolapp-dev-9062a-unauthRole",
+      "StackName": "amplify-elastikschoolapp-dev-9062a",
+      "StackId": "arn:aws:cloudformation:us-east-1:180294221012:stack/amplify-elastikschoolapp-dev-9062a/4029a480-6f5c-11ef-8ff6-0e9a618e8613",
+      "AmplifyAppId": "dn64dqwz9kre6"
+    },
+    "categories": {
+      "auth": {
+        "elastikschoolapp62b5a714": {}
+      },
+      "api": {
+        "elastikschoolapp": {}
+      }
     }
   }
 }

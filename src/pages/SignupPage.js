@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Auth } from 'aws-amplify';
+import { Auth, Amplify } from 'aws-amplify';
+import awsExports from '../aws-exports';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');
@@ -8,6 +9,15 @@ const SignupPage = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    try {
+      Amplify.configure(awsExports);
+    } catch (error) {
+      console.error('Error configuring Amplify:', error);
+      setError('Failed to configure Amplify. Please check your setup.');
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +38,8 @@ const SignupPage = () => {
       });
       navigate('/confirm-signup', { state: { email } });
     } catch (error) {
-      setError('Failed to sign up: ' + error.message);
+      console.error('Error during sign up:', error);
+      setError('Failed to sign up: ' + (error.message || JSON.stringify(error)));
     }
   };
 
