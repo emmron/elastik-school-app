@@ -7,6 +7,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const LoginPage = () => {
     setError('');
     try {
       await Auth.signIn(email, password);
+      setIsAuthenticated(true);
       navigate('/dashboard');
     } catch (loginError) {
       console.error('Login error:', loginError);

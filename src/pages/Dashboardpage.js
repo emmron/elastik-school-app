@@ -1,54 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Auth } from 'aws-amplify';
 import StudentForm from '../components/StudentForm';
 import StudentList from '../components/StudentList';
 
-const DashboardPage = () => {
-  const [user, setUser] = useState(null);
+const DashboardPage = ({ isAuthenticated }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    checkAuthState();
-  }, []);
-
-  const checkAuthState = async () => {
-    try {
-      const userData = await Auth.currentAuthenticatedUser();
-      setUser(userData);
-    } catch (error) {
+    if (!isAuthenticated) {
       navigate('/');
     }
-  };
+  }, [isAuthenticated, navigate]);
 
-  const handleSignOut = async () => {
-    try {
-      await Auth.signOut();
-      navigate('/');
-    } catch (error) {
-      console.error('Error signing out: ', error);
-    }
-  };
-
-  if (!user) {
-    return <div>Loading...</div>;
+  if (!isAuthenticated) {
+    return null;
   }
 
   return (
     <div className="dashboard-page">
-      <header>
-        <h1>Teacher Dashboard</h1>
-        <div className="user-widget">
-          <span>Welcome, {user.attributes.email}</span>
-          <button onClick={handleSignOut}>Sign Out</button>
-        </div>
-      </header>
-      <main>
-        <section>
+      <main className="dashboard-main">
+        <section className="student-form-section">
           <h2>Add New Student</h2>
           <StudentForm />
         </section>
-        <section>
+        <section className="student-list-section">
           <h2>Student List</h2>
           <StudentList />
         </section>

@@ -11,6 +11,7 @@ type Student @model @auth(rules: [{ allow: public }]) {
 }
 
 input CreateStudentInput {
+  id: ID!
   firstName: String!
   lastName: String!
   email: String!
